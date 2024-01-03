@@ -1,0 +1,192 @@
+{
+    "name": "gcp-ca-service",
+    "version": "1.0.2",
+    "label": "GCP CA Service",
+    "description": "This connector integrates with GCP CA Service .",
+    "publisher": "Fortinet_CSE",
+    "icon_small_name": "cloudsec-png-small.png",
+    "icon_large_name": "cloudsec-png-large.png",
+    "category": [
+        "Utilities"
+    ],
+    "configuration": {
+        "fields": [
+            {
+                "title": "Upload Service Account JSON File",
+                "type": "file",
+                "name": "auth_file",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "tooltip": "The service account private key file."
+            }
+        ]
+    },
+    "operations": [
+        {
+            "operation": "list_certificate_authorities",
+            "title": "get_ca_crl",
+            "description": "get CA cert and CRL",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "get_ca_cert_crl",
+            "parameters": [
+                {
+                    "title": "location",
+                    "type": "text",
+                    "name": "location",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "GCP region for CA Service"
+                },
+                {
+                    "title": "ca_pool_name",
+                    "type": "text",
+                    "name": "ca_pool_name",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "GCP CA Service Pool Name."
+                }
+            ],
+            "output_schema": {
+                "kind": "",
+                "id": "",
+                "items": [],
+                "nextPageToken": "",
+                "selfLink": "",
+                "warning": {}
+            },
+            "open": false
+        },
+        {
+            "operation": "csr",
+            "title": "csr",
+            "description": "submit certifcate signing request",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "csr",
+            "parameters": [
+                {
+                    "title": "location",
+                    "type": "text",
+                    "name": "location",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "GCP region for CA Service"
+                },
+                {
+                    "title": "ca_pool_name",
+                    "type": "text",
+                    "name": "ca_pool_name",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "GCP CA Service Pool Name."
+                },
+                {
+                    "title": "ca_name",
+                    "type": "text",
+                    "name": "ca_name",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "GCP CA Service CA Name."
+                },
+                {
+                    "title": "certificate_name",
+                    "type": "text",
+                    "name": "certificate_name",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "The name you would like to assign to the certificate."
+                },
+                {
+                    "title": "certificate_lifetime",
+                    "type": "integer",
+                    "name": "certificate_lifetime",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "Lifetime of the certificate in seconds."
+                },
+                {
+                    "title": "pem_csr",
+                    "type": "textarea",
+                    "name": "pem_csr",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": null,
+                    "tooltip": "The CSR in the PEM the format '-----BEGIN CERTIFICATE REQUEST----- cert hash -----END CERTIFICATE REQUEST-----"
+                }
+            ],
+            "output_schema": {
+                "kind": "",
+                "id": "",
+                "items": [],
+                "nextPageToken": "",
+                "selfLink": "",
+                "warning": {}
+            },
+            "open": false
+        },
+        {
+            "operation": "revoke_certificate",
+            "title": "revoke_certificate",
+            "description": "submit certifcate signing request",
+            "enabled": true,
+            "category": "investigation",
+            "annotation": "revoke_certificate",
+            "parameters": [
+                {
+                    "title": "location",
+                    "type": "text",
+                    "name": "location",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "GCP region for CA Service"
+                },
+                {
+                    "title": "ca_pool_name",
+                    "type": "text",
+                    "name": "ca_pool_name",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "GCP CA Service Pool Name."
+                },
+                {
+                    "title": "certificate_name",
+                    "type": "text",
+                    "name": "certificate_name",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "The name of the certificate you would like to revoke."
+                }
+            ],
+            "output_schema": {
+                "kind": "",
+                "id": "",
+                "items": [],
+                "nextPageToken": "",
+                "selfLink": "",
+                "warning": {}
+            },
+            "open": false
+        }
+    ],
+    "active": true,
+    "cs_compatible": true,
+    "system": false,
+    "playbook_collections": [],
+    "icon_small": "data:image/jpeg;base64,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",
+    "icon_large": "data:image/jpeg;base64,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",
+    "help_online": "Fill this in later",
+    "vendor_version": null
+}
