@@ -1,0 +1,328 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@type": "WorkflowCollection",
+      "name": "GCP-CAS",
+      "description": null,
+      "visible": true,
+      "image": null,
+      "uuid": "725d9133-40fd-493b-bd9e-78a2f66820cb",
+      "id": 42,
+      "deletedAt": null,
+      "importedBy": [],
+      "recordTags": [],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "crl_ca_cert",
+          "aliasName": null,
+          "tag": null,
+          "description": "Gets CA cert and CRL",
+          "isActive": true,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1702985392,
+          "collection": "/api/3/workflow_collections/725d9133-40fd-493b-bd9e-78a2f66820cb",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/ba999fd7-be86-450e-96c6-40d2f5a4e6a6",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "881577b0-fa99-4ceb-9da9-12f4884c155b",
+                "title": "start",
+                "resources": [
+                  "incidents"
+                ],
+                "__triggerLimit": true,
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "triggerOnSource": true,
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "showToasterMessage": {
+                  "visible": false,
+                  "messageVisible": true
+                },
+                "triggerOnReplicate": false,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "40",
+              "left": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "ba999fd7-be86-450e-96c6-40d2f5a4e6a6"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "req_ca_crl",
+              "description": null,
+              "arguments": {
+                "name": "GCP CA Service",
+                "config": "141b31ed-8857-4bb8-8f41-2e9db42c927f",
+                "params": {
+                  "location": "us-central1",
+                  "ca_pool_name": "fortinet-cse-ca"
+                },
+                "version": "1.0.2",
+                "connector": "gcp-ca-service",
+                "operation": "list_certificate_authorities",
+                "operationTitle": "get_ca_crl",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "81",
+              "left": "567",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "7dbf5252-59c6-42fa-bc0b-fb16886e19a8"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> req_ca_crl",
+              "targetStep": "/api/3/workflow_steps/7dbf5252-59c6-42fa-bc0b-fb16886e19a8",
+              "sourceStep": "/api/3/workflow_steps/ba999fd7-be86-450e-96c6-40d2f5a4e6a6",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "e53d406b-c025-46e9-b2dc-259b8dae2b35"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "af205161-a52a-461d-8fa6-cbb8b24de54f",
+          "id": 467,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": []
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "csr-request",
+          "aliasName": null,
+          "tag": null,
+          "description": "makes csr to GCP",
+          "isActive": true,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1702938220,
+          "collection": "/api/3/workflow_collections/725d9133-40fd-493b-bd9e-78a2f66820cb",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/30404594-aa53-474e-b33d-f84050166a26",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "e02ff396-773a-478c-9b75-0cf486baf03b",
+                "title": "start",
+                "resources": [
+                  "incidents"
+                ],
+                "__triggerLimit": true,
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "triggerOnSource": true,
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "showToasterMessage": {
+                  "visible": false,
+                  "messageVisible": true
+                },
+                "triggerOnReplicate": false,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "40",
+              "left": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "30404594-aa53-474e-b33d-f84050166a26"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "req_csr",
+              "description": null,
+              "arguments": {
+                "name": "GCP CA Service",
+                "config": "141b31ed-8857-4bb8-8f41-2e9db42c927f",
+                "params": {
+                  "ca_name": "20231201-yjj-t80",
+                  "pem_csr": "-----BEGIN CERTIFICATE REQUEST-----\nMIIBdDCCARkCAQAwgY0xETAPBgNVBAgTCE1pc3NvdXJpMRYwFAYDVQQHEw1TYWlu\ndCBDaGFybGVzMRUwEwYDVQQKEwxmb3J0aW5ldC1jc2UxDjAMBgNVBAsUBW15X291\nMRUwEwYDVQQDEwwxOTIuMTY4Ljc0LjExIjAgBgkqhkiG9w0BCQEWE2Rnb29jaEBm\nb3J0aW5ldC5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATEiMWXd0G+6KRh\nWwAHmT3TJvAHqzwgIOi+fL/1ymcsvu2nwKIlchFzZwtoniVjHc63La5xJxyj2whp\n88NE+pE1oCkwJwYJKoZIhvcNAQkOMRowGDAJBgNVHRMEAjAAMAsGA1UdDwQEAwIF\noDAKBggqhkjOPQQDAgNJADBGAiEAptPZ4zY3D4AiCbS9N+IJR3iwA9mEaLIh6WGC\nNloZNMACIQDnQXk6lAsnh90agjRAyV7+jH7Q51UAM2HPn+1Zl3VbBw==\n-----END CERTIFICATE REQUEST-----",
+                  "location": "us-central1",
+                  "ca_pool_name": "fortinet-cse-ca",
+                  "certificate_name": "Dgg--{{arrow.get().int_timestamp}}",
+                  "certificate_lifetime": 31536000
+                },
+                "version": "1.0.1",
+                "connector": "gcp-ca-service",
+                "operation": "csr",
+                "operationTitle": "csr",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "254",
+              "left": "213",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "da2bf2cc-1e19-43ba-941d-14dc99e89a2a"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> req_csr",
+              "targetStep": "/api/3/workflow_steps/da2bf2cc-1e19-43ba-941d-14dc99e89a2a",
+              "sourceStep": "/api/3/workflow_steps/30404594-aa53-474e-b33d-f84050166a26",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "5309df83-6065-4333-a68e-52c31e41217f"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "dd4700ec-7e39-4aa3-a951-34f6463afbe1",
+          "id": 465,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": []
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "revoke",
+          "aliasName": null,
+          "tag": null,
+          "description": "makes csr to GCP",
+          "isActive": true,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1702992145,
+          "collection": "/api/3/workflow_collections/725d9133-40fd-493b-bd9e-78a2f66820cb",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/3bdbecbc-2abe-40f8-9d39-4debe466fc61",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "997e57c6-028e-45a6-be36-dc7fdf9290a9",
+                "title": "start",
+                "resources": [
+                  "incidents"
+                ],
+                "__triggerLimit": true,
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "triggerOnSource": true,
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "showToasterMessage": {
+                  "visible": false,
+                  "messageVisible": true
+                },
+                "triggerOnReplicate": false,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "40",
+              "left": "40",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "3bdbecbc-2abe-40f8-9d39-4debe466fc61"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "revoke_cert",
+              "description": null,
+              "arguments": {
+                "name": "GCP CA Service",
+                "config": "141b31ed-8857-4bb8-8f41-2e9db42c927f",
+                "params": {
+                  "location": "us-central1",
+                  "ca_pool_name": "fortinet-cse-ca",
+                  "certificate_name": "Dgg--1702992016"
+                },
+                "version": "1.0.2",
+                "connector": "gcp-ca-service",
+                "operation": "revoke_certificate",
+                "operationTitle": "revoke_certificate",
+                "pickFromTenant": false,
+                "step_variables": []
+              },
+              "status": null,
+              "top": "260",
+              "left": "220",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "e5194725-4e67-4f2b-aad0-e95bc1cec910"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start -> req_csr",
+              "targetStep": "/api/3/workflow_steps/e5194725-4e67-4f2b-aad0-e95bc1cec910",
+              "sourceStep": "/api/3/workflow_steps/3bdbecbc-2abe-40f8-9d39-4debe466fc61",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "8695b288-e5fc-4eeb-902d-4fab2c5bbed6"
+            }
+          ],
+          "groups": [],
+          "priority": "/api/3/picklists/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+          "uuid": "e939f7d9-4a4b-4c44-a3bb-f370ca84e551",
+          "id": 466,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": []
+        }
+      ]
+    }
+  ],
+  "exported_tags": []
+}
