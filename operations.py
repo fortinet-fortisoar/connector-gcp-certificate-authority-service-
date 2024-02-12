@@ -6,12 +6,9 @@
 
 import os
 import requests
-import json
-import sys
+
 import google.cloud.security.privateca_v1 as privateca_v1
-import google.cloud.compute_v1 as compute
 import google.api_core.retry as retry
-from google.api_core.exceptions import NotFound
 from google.oauth2 import service_account
 from connectors.core.connector import get_logger, ConnectorError
 from connectors.cyops_utilities.builtins import download_file_from_cyops
