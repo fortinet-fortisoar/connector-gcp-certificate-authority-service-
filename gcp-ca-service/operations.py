@@ -1,9 +1,9 @@
-""" Copyright start
-  Copyright (C) 2008 - 2022 Fortinet Inc.
-  All rights reserved.
-  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
-  Copyright end """
-
+"""
+Copyright start
+MIT License
+Copyright (c) 2024 Fortinet Inc
+Copyright end
+"""
 import os
 import requests
 
@@ -15,7 +15,7 @@ from connectors.cyops_utilities.builtins import download_file_from_cyops
 from google.protobuf import duration_pb2
 
 
-logger = get_logger('google-cloud-private-ca')
+logger = get_logger('gcp-ca-service')
 
 
 class GoogleCloudCAService(object):
