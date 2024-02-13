@@ -8,7 +8,7 @@
   "icon_small_name": "cloudsec-png-small.png",
   "icon_large_name": "cloudsec-png-large.png",
   "cs_compatible": true,
-  "help_online": "",
+  "help_online": "https://github.com/fortinet-fortisoar/connector-gcp-certificate-authority-service/blob/release/1.0.0/docs/GCP-ca-service.md",
   "category": "Utilities",
   "configuration": {
     "fields": [
