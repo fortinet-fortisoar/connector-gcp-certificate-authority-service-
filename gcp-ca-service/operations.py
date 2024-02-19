@@ -1,24 +1,21 @@
-""" Copyright start
-  Copyright (C) 2008 - 2022 Fortinet Inc.
-  All rights reserved.
-  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
-  Copyright end """
-
+"""
+Copyright start
+MIT License
+Copyright (c) 2024 Fortinet Inc
+Copyright end
+"""
 import os
 import requests
-import json
-import sys
+
 import google.cloud.security.privateca_v1 as privateca_v1
-import google.cloud.compute_v1 as compute
 import google.api_core.retry as retry
-from google.api_core.exceptions import NotFound
 from google.oauth2 import service_account
 from connectors.core.connector import get_logger, ConnectorError
 from connectors.cyops_utilities.builtins import download_file_from_cyops
 from google.protobuf import duration_pb2
 
 
-logger = get_logger('google-cloud-private-ca')
+logger = get_logger('gcp-ca-service')
 
 
 class GoogleCloudCAService(object):

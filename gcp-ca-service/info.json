@@ -1,0 +1,201 @@
+{
+  "name": "gcp-ca-service",
+  "version": "1.0.0",
+  "label": "GCP Certificate Authority Service",
+  "description": "Certificate Authority Service is a highly available and scalable Google Cloud service that enables you to simplify, automate, and customize the deployment, management, and security of private certificate authorities (CA)",
+  "cs_approved": false,
+  "publisher": "Fortinet CSE",
+  "icon_small_name": "cloudsec-png-small.png",
+  "icon_large_name": "cloudsec-png-large.png",
+  "cs_compatible": true,
+  "help_online": "https://github.com/fortinet-fortisoar/connector-gcp-certificate-authority-service/blob/release/1.0.0/docs/GCP-ca-service.md",
+  "category": "Utilities",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Upload Service Account JSON File",
+        "type": "file",
+        "name": "auth_file",
+        "required": true,
+        "visible": true,
+        "editable": true,
+        "description": "Provide a service account json file",
+        "tooltip": "Provide a service account json file"
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "list_certificate_authorities",
+      "title": "Get Certificate Authorities",
+      "description": "Get certificate revocation list (CRL) is a list of digital certificates that have been revoked by the issuing certificate authority (CA)",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "list_certificate_authorities",
+      "parameters": [
+        {
+          "title": "Location",
+          "type": "text",
+          "name": "location",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "description": "Provide the geographical regions where a Certificate Authority Service resource is stored and can be accessed",
+          "tooltip": "Provide the geographical regions where a Certificate Authority Service resource is stored and can be accessed"
+        },
+        {
+          "title": "CA Pool Name",
+          "type": "text",
+          "name": "ca_pool_name",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Provide a CA pool name for a collection of multiple CAs with a common certificate issuance policy and Identity and Access Management (IAM) policy",
+          "description": "Provide a CA pool name for a collection of multiple CAs with a common certificate issuance policy and Identity and Access Management (IAM) policy"
+        }
+      ],
+      "output_schema": {
+        "kind": "",
+        "id": "",
+        "items": [],
+        "nextPageToken": "",
+        "selfLink": "",
+        "warning": {}
+      },
+      "open": false
+    },
+    {
+      "operation": "csr",
+      "title": "Submit CSR",
+      "description": "Submit a CSR(Certificate Signing Request)",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "submit_csr",
+      "parameters": [
+        {
+          "title": "Location",
+          "type": "text",
+          "name": "location",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "description": "Provide the geographical regions where a Certificate Authority Service resource is stored and can be accessed",
+          "tooltip": "Provide the geographical regions where a Certificate Authority Service resource is stored and can be accessed"
+        },
+        {
+          "title": "CA Pool Name",
+          "type": "text",
+          "name": "ca_pool_name",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Provide a CA pool name for a collection of multiple CAs with a common certificate issuance policy and Identity and Access Management (IAM) policy",
+          "description": "Provide a CA pool name for a collection of multiple CAs with a common certificate issuance policy and Identity and Access Management (IAM) policy"
+        },
+        {
+          "title": "Certificate Authority (CA)",
+          "type": "text",
+          "name": "ca_name",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Provide a name of certificate authority (ca) for self signed certificate",
+          "description": "Provide a name of certificate authority (ca) for self signed certificate"
+        },
+        {
+          "title": "Certificate Name",
+          "type": "text",
+          "name": "certificate_name",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the name you would like to assign to the certificate",
+          "description": "Specify the name you would like to assign to the certificate"
+        },
+        {
+          "title": "Certificate Lifetime",
+          "type": "integer",
+          "name": "certificate_lifetime",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Provide a lifetime of the certificate in seconds",
+          "description": "Provide a lifetime of the certificate in seconds"
+        },
+        {
+          "title": "CSR with a PEM Formatted Key",
+          "type": "textarea",
+          "name": "pem_csr",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": null,
+          "tooltip": "Provide CSR contains the public key of the key pair generated with the user certificate",
+          "description": "Provide CSR contains the public key of the key pair generated with the user certificate",
+          "placeholder": "The CSR in the PEM the format '-----BEGIN CERTIFICATE REQUEST----- cert hash -----END CERTIFICATE REQUEST-----"
+
+
+        }
+      ],
+      "output_schema": {
+        "kind": "",
+        "id": "",
+        "items": [],
+        "nextPageToken": "",
+        "selfLink": "",
+        "warning": {}
+      },
+      "open": false
+    },
+    {
+      "operation": "revoke_certificate",
+      "title": "Revoke Certificate",
+      "description": "Revoke a certificate request for issued is no longer operational",
+      "enabled": true,
+      "category": "investigation",
+      "annotation": "revoke_certificate",
+      "parameters": [
+        {
+          "title": "Location",
+          "type": "text",
+          "name": "location",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "description": "Provide the geographical regions where a Certificate Authority Service resource is stored and can be accessed",
+          "tooltip": "Provide the geographical regions where a Certificate Authority Service resource is stored and can be accessed"
+        },
+        {
+          "title": "CA Pool Name",
+          "type": "text",
+          "name": "ca_pool_name",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Provide a CA pool name for a collection of multiple CAs with a common certificate issuance policy and Identity and Access Management (IAM) policy",
+          "description": "Provide a CA pool name for a collection of multiple CAs with a common certificate issuance policy and Identity and Access Management (IAM) policy"
+        },
+        {
+          "title": "Certificate Name",
+          "type": "text",
+          "name": "certificate_name",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the name you would like to assign to the certificate",
+          "description": "Specify the name you would like to assign to the certificate"
+        }
+      ],
+      "output_schema": {
+        "kind": "",
+        "id": "",
+        "items": [],
+        "nextPageToken": "",
+        "selfLink": "",
+        "warning": {}
+      },
+      "open": false
+    }
+  ],
+  "active": true
+}

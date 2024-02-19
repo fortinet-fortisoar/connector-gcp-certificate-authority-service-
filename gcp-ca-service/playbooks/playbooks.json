@@ -1,0 +1,255 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "uuid": "00daed88-547c-41fa-b131-ff107c42c07c",
+      "@type": "WorkflowCollection",
+      "name": "Sample - GCP Certificate Authority Service - 1.0.0",
+      "description": "Certificate Authority Service is a highly available and scalable Google Cloud service that enables you to simplify, automate, and customize the deployment, management, and security of private certificate authorities (CA)",
+      "visible": true,
+      "image": null,
+      "recordTags": [
+        "Gcp",
+        "gcp-ca-service"
+      ],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "uuid": "1921e89f-13ab-4206-a233-b0fa83162871",
+          "collection": "/api/3/workflow_collections/00daed88-547c-41fa-b131-ff107c42c07c",
+          "triggerLimit": null,
+          "description": "Get certificate revocation list (CRL) is a list of digital certificates that have been revoked by the issuing certificate authority (CA)",
+          "name": "Get Certificate Authorities",
+          "tag": "#GCP Certificate Authority Service",
+          "recordTags": [
+            "Gcp",
+            "gcp-ca-service"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/1d0a128b-8e91-4a26-ab7c-8f7e3c513118",
+          "steps": [
+            {
+              "uuid": "1d0a128b-8e91-4a26-ab7c-8f7e3c513118",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "d0186396-5f05-4d42-887f-a0a8d8a55676",
+                "title": "GCP Certificate Authority Service: Get Certificate Authorities",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "dc565750-d3c3-4c6e-99b3-2deb10f3680b",
+              "@type": "WorkflowStep",
+              "name": "Get Certificate Authorities",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "GCP Certificate Authority Service",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "gcp-ca-service",
+                "operation": "list_certificate_authorities",
+                "operationTitle": "Get Certificate Authorities",
+                "step_variables": {}
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "f86b4ba4-1769-41a6-82e5-9bd70d55b61e",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Certificate Authorities",
+              "sourceStep": "/api/3/workflow_steps/1d0a128b-8e91-4a26-ab7c-8f7e3c513118",
+              "targetStep": "/api/3/workflow_steps/dc565750-d3c3-4c6e-99b3-2deb10f3680b"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "732d08e1-c9d1-47cf-a939-bbaff4d70038",
+          "collection": "/api/3/workflow_collections/00daed88-547c-41fa-b131-ff107c42c07c",
+          "triggerLimit": null,
+          "description": "submit a CSR(Certificate Signing Request)",
+          "name": "Submit CSR",
+          "tag": "#GCP Certificate Authority Service",
+          "recordTags": [
+            "Gcp",
+            "gcp-ca-service"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/3532ad6c-aac2-4d98-805e-c7f80aaee052",
+          "steps": [
+            {
+              "uuid": "3532ad6c-aac2-4d98-805e-c7f80aaee052",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "d6c79389-dd42-4034-a78f-1d09a8b12eb3",
+                "title": "GCP Certificate Authority Service: Submit CSR",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "4bfd362d-fc34-4067-b099-a4adbb4406a7",
+              "@type": "WorkflowStep",
+              "name": "Submit CSR",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "GCP Certificate Authority Service",
+                "config": "''",
+                "params": {
+                  "pem_csr": null
+                },
+                "version": "1.0.0",
+                "connector": "gcp-ca-service",
+                "operation": "submit_csr",
+                "operationTitle": "Submit CSR",
+                "step_variables": {}
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "d68871cf-8ee6-47f5-812b-131eae33d4f1",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Submit CSR",
+              "sourceStep": "/api/3/workflow_steps/3532ad6c-aac2-4d98-805e-c7f80aaee052",
+              "targetStep": "/api/3/workflow_steps/4bfd362d-fc34-4067-b099-a4adbb4406a7"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "411c6c11-2a8a-459c-8c3c-33f87bda2808",
+          "collection": "/api/3/workflow_collections/00daed88-547c-41fa-b131-ff107c42c07c",
+          "triggerLimit": null,
+          "description": "Revoke a certificate request for issued is no longer operational",
+          "name": "Revoke Certificate",
+          "tag": "#GCP Certificate Authority Service",
+          "recordTags": [
+            "Gcp",
+            "gcp-ca-service"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/6867b342-c913-41f5-b74c-68ae73d15659",
+          "steps": [
+            {
+              "uuid": "6867b342-c913-41f5-b74c-68ae73d15659",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "6dc0b9ba-5613-4a08-afeb-f5a6f6a07948",
+                "title": "GCP Certificate Authority Service: Revoke Certificate",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "92a52fc0-3f64-4d0a-bd8b-2f3334b095c1",
+              "@type": "WorkflowStep",
+              "name": "Revoke Certificate",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "GCP Certificate Authority Service",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "gcp-ca-service",
+                "operation": "revoke_certificate",
+                "operationTitle": "Revoke Certificate",
+                "step_variables": {}
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "eae011b5-6d1d-4da4-a925-683141f4353e",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Revoke Certificate",
+              "sourceStep": "/api/3/workflow_steps/6867b342-c913-41f5-b74c-68ae73d15659",
+              "targetStep": "/api/3/workflow_steps/92a52fc0-3f64-4d0a-bd8b-2f3334b095c1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
