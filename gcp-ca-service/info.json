@@ -4,17 +4,17 @@
   "label": "GCP Certificate Authority Service",
   "description": "Certificate Authority Service is a highly available and scalable Google Cloud service that enables you to simplify, automate, and customize the deployment, management, and security of private certificate authorities (CA)",
   "cs_approved": false,
-  "publisher": "Fortinet CSE",
+  "publisher": "Community",
   "icon_small_name": "cloudsec-png-small.png",
   "icon_large_name": "cloudsec-png-large.png",
   "cs_compatible": true,
-  "help_online": "https://github.com/fortinet-fortisoar/connector-gcp-certificate-authority-service/blob/release/1.0.0/docs/GCP-ca-service.md",
+  "help_online": "https://github.com/fortinet-fortisoar/connector-gcp-ca-service/blob/develop/README.md",
   "category": "Utilities",
   "configuration": {
     "fields": [
       {
         "title": "Upload Service Account JSON File",
-        "type": "file",
+        "type": "json_file",
         "name": "auth_file",
         "required": true,
         "visible": true,
@@ -116,7 +116,7 @@
     {
         "operation": "csr",
         "title": "Submit CSR",
-        "description": "Submit a CSR(Certificate Signing Request)",
+        "description": "Submit a CSR(Certificate Signing Request) to GCP CA Service.  This will return a signed certificate",
         "enabled": true,
         "category": "investigation",
         "annotation": "submit_csr",
