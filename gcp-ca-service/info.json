@@ -168,8 +168,8 @@
                 "required": true,
                 "visible": true,
                 "editable": true,
-                "tooltip": "Provide a lifetime of the certificate in seconds",
-                "description": "Provide a lifetime of the certificate in seconds"
+                "tooltip": "Provide lifetime of the certificate in seconds",
+                "description": "Provide the desired lifetime of the certificate in seconds"
             },
             {
                 "title": "CSR with a PEM Formatted Key",
