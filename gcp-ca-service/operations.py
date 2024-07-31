@@ -14,7 +14,6 @@ from connectors.core.connector import get_logger, ConnectorError
 from connectors.cyops_utilities.builtins import download_file_from_cyops
 from google.protobuf import duration_pb2
 
-
 logger = get_logger('gcp-ca-service')
 
 
@@ -100,7 +99,6 @@ class GoogleCloudCAService(object):
                 data_res.append(data_res_item)
         return data_res
 
-
     def csr(self, params):
         logger.warn(f"params:{params}")
         project_id = self.p_id
@@ -112,20 +110,20 @@ class GoogleCloudCAService(object):
         pem_csr = params.get('pem_csr')
         client_types = ['ca_service_client']
         logger.warn("done with params")
-        
+
         clients = self.make_client_call(client_types)
         caServiceClient = clients[client_types[0]]
-        
+
         duration = duration_pb2.Duration(seconds=certificate_lifetime)
-            
-    # Create certificate with CSR.
-    # The pem_csr contains the public key and the domain details required.
+
+        # Create certificate with CSR.
+        # The pem_csr contains the public key and the domain details required.
         certificate = privateca_v1.Certificate(
             pem_csr=pem_csr,
             lifetime=duration
         )
-    # Create the Certificate Request.
-    # Set the CA which is responsible for creating the certificate with the provided CSR.
+        # Create the Certificate Request.
+        # Set the CA which is responsible for creating the certificate with the provided CSR.
         csrequest = privateca_v1.CreateCertificateRequest(
             parent=caServiceClient.ca_pool_path(project_id, location, ca_pool_name),
             certificate_id=certificate_name,
@@ -134,11 +132,11 @@ class GoogleCloudCAService(object):
         )
         csresponse = caServiceClient.create_certificate(request=csrequest)
 
-        signed_cert = csresponse.pem_certificate    
+        signed_cert = csresponse.pem_certificate
         cert_chain = csresponse.pem_certificate_chain
         logger.warn("done with csr")
-        
-        return {"signed_cert": signed_cert , "cert_chain":  "\n".join(cert_chain) }
+
+        return {"signed_cert": signed_cert, "cert_chain": "\n".join(cert_chain)}
 
     def revoke_certificate(self, params):
         logger.warn(f"params:{params}")
@@ -149,10 +147,10 @@ class GoogleCloudCAService(object):
         client_types = ['ca_service_client']
         clients = self.make_client_call(client_types)
         caServiceClient = clients[client_types[0]]
-        
+
         certificate_path = caServiceClient.certificate_path(
-                project_id, location, ca_pool_name, certificate_name
-            )
+            project_id, location, ca_pool_name, certificate_name
+        )
 
         # Create Revoke Certificate Request and specify the appropriate revocation reason.
         request = privateca_v1.RevokeCertificateRequest(
@@ -162,6 +160,7 @@ class GoogleCloudCAService(object):
         rev_res = revoke.revocation_details.revocation_time
         logger.warn("done with revocation")
         return (rev_res)
+
 
 def _run_operation(config, params):
     compute_obj = GoogleCloudCAService(config)
@@ -174,4 +173,3 @@ def _check_health(config):
     compute_obj = GoogleCloudCAService(config)
     logger.warn('Checking Health check.')
     return compute_obj.make_client_call(['ca_service_client'], True)
-
