@@ -63,13 +63,42 @@ class GoogleCloudCAService(object):
         clients = self.make_client_call(client_types)
         caServiceClient = clients[client_types[0]]
         ca_pool_path = caServiceClient.ca_pool_path(project_id, location, ca_pool_name)
+        data_res = []
         for ca in caServiceClient.list_certificate_authorities(parent=ca_pool_path):
-            ca_cert_url = ca.access_urls.ca_certificate_access_url
-            crl_url = ca.access_urls.crl_access_urls[0]
-            ca_cert = requests.get(ca_cert_url)
-            crl_cert = requests.get(crl_url)
+            ca_name_long = ca.name
+            ca_short_name = ca_name_long.split('/')[-1]
 
-            return [ca_cert, crl_cert]
+            data_res_item = {
+                'ca_name': ca_short_name,
+                'ca_type': ca.type,
+            }
+            data_res.append(data_res_item)
+        return data_res
+
+    def get_ca_crl(self, params):
+        project_id = self.p_id
+        location = params.get('location')
+        ca_name = params.get('ca_name')
+        ca_pool_name = params.get('ca_pool_name')
+        client_types = ['ca_service_client']
+        clients = self.make_client_call(client_types)
+        caServiceClient = clients[client_types[0]]
+        ca_pool_path = caServiceClient.ca_pool_path(project_id, location, ca_pool_name)
+        data_res = []
+        for ca in caServiceClient.list_certificate_authorities(parent=ca_pool_path):
+            ca_name_long = ca.name
+            ca_short_name = ca_name_long.split('/')[-1]
+            if ca_short_name == ca_name:
+                ca_cert_url = ca.access_urls.ca_certificate_access_url
+                crl_url = ca.access_urls.crl_access_urls[0]
+                ca_cert = requests.get(ca_cert_url)
+                crl_cert = requests.get(crl_url)
+                data_res_item = {
+                    'ca_crt': ca_cert.content,
+                    'crl_crt': crl_cert.content
+                }
+                data_res.append(data_res_item)
+        return data_res
 
 
     def csr(self, params):
