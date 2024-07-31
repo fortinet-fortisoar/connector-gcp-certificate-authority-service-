@@ -8,6 +8,8 @@ Connector Version: 1.0.1
 
 Authored By: Fortinet CSE
 
+Contributor: Derrick Gooch
+
 Certified: No
 ## Release Notes for version 1.0.1
 Following enhancements have been made to the GCP Certificate Authority Service Connector in version 1.0.1:
@@ -126,8 +128,8 @@ The output contains the following populated JSON schema:
 ## Included playbooks
 The `Sample - GCP Certificate Authority Service - 1.0.1` playbook collection comes bundled with the GCP Certificate Authority Service connector. These playbooks contain steps using which you can perform all supported actions. You can see bundled playbooks in the **Automation** > **Playbooks** section in FortiSOAR&trade; after importing the GCP Certificate Authority Service connector.
 
-- Get Certificate Authorities
 - Get CA and CRL
+- Get Certificate Authorities
 - Revoke Certificate
 - Submit CSR
 

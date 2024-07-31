@@ -5,7 +5,7 @@
   "description": "Certificate Authority Service is a highly available and scalable Google Cloud service that enables you to simplify, automate, and customize the deployment, management, and security of private certificate authorities (CA)",
   "cs_approved": false,
   "publisher": "Fortinet CSE",
-  "contributor": "",
+  "contributor": "Derrick Gooch",
   "icon_small_name": "cloudsec-png-small.png",
   "icon_large_name": "cloudsec-png-large.png",
   "cs_compatible": true,
